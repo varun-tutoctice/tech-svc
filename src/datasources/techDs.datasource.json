@@ -1,0 +1,11 @@
+{
+  "name": "techDs",
+  "connector": "mongodb",
+  "url": "172.31.48.248",
+  "host": "",
+  "port": 27017,
+  "user": "svcAdvUser",
+  "password": "DBAccess123",
+  "database": "advprototype",
+  "useNewUrlParser": true
+}
