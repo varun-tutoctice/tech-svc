@@ -1,11 +1,11 @@
 {
   "name": "techDs",
   "connector": "mongodb",
-  "url": "172.31.48.248",
-  "host": "",
+  "url": "",
+  "host": "fdsahl96ceb014.fda.gov",
   "port": 27017,
-  "user": "svcAdvUser",
-  "password": "DBAccess123",
-  "database": "advprototype",
+  "user": "ng-mdbadmin",
+  "password": "Welcome123",
+  "database": "admin",
   "useNewUrlParser": true
 }
