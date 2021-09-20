@@ -17,15 +17,14 @@ import {
   del,
   requestBody,
 } from '@loopback/rest';
-import { Tech } from '../models';
-import { TechRepository } from '../repositories';
+import {Tech} from '../models';
+import {TechRepository} from '../repositories';
 
 export class TechSvcController {
   constructor(
     @repository(TechRepository)
     public techRepository: TechRepository,
-  ) { }
-
+  ) {}
 
   // Simple healthcheck function for the HTTP GET on /email-service.  The ALB is expecting a 200 for this
   @get('/techSvc/health', {
@@ -36,23 +35,38 @@ export class TechSvcController {
     },
   })
   async healthCheck(): Promise<String> {
-    return "status: ok";
+    return 'status: ok';
   }
 
+  // @post('/acc-api/attachment', {
+  //   responses: {
+  //     '200': {
+  //       description: 'Attachment model instance',
+  //       content: { 'application/json': { schema: { 'x-ts-type': Attachment } } },
+  //     },
+  //   },
+  // })
+  // async create(@requestBody() attachment: Attachment): Promise<Attachment> {
+  //   return await this.attachmentRepository.create(attachment);
+  // }
 
   @post('/techSvc', {
     responses: {
       '200': {
         description: 'Tech model instance',
-        content: { 'application/json': { schema: getModelSchemaRef(Tech) } },
+        content: {'application/json': {schema: getModelSchemaRef(Tech)}},
       },
     },
   })
+
+  //   async create(@requestBody() tech: Tech): Promise<Tech> {
+  //     return this.techRepository.create(tech);
+  // }
   async create(
     @requestBody({
       content: {
         'application/json': {
-          schema: getModelSchemaRef(Tech, { exclude: ['id'] }),
+          schema: getModelSchemaRef(Tech, {exclude: ['id']}),
         },
       },
     })
@@ -65,7 +79,7 @@ export class TechSvcController {
     responses: {
       '200': {
         description: 'Tech model count',
-        content: { 'application/json': { schema: CountSchema } },
+        content: {'application/json': {schema: CountSchema}},
       },
     },
   })
@@ -81,14 +95,15 @@ export class TechSvcController {
         description: 'Array of Tech model instances',
         content: {
           'application/json': {
-            schema: { type: 'array', items: getModelSchemaRef(Tech) },
+            schema: {type: 'array', items: getModelSchemaRef(Tech)},
           },
         },
       },
     },
   })
   async find(
-    @param.query.object('filter', getFilterSchemaFor(Tech)) filter?: Filter<Tech>,
+    @param.query.object('filter', getFilterSchemaFor(Tech))
+    filter?: Filter<Tech>,
   ): Promise<Tech[]> {
     return this.techRepository.find(filter);
   }
@@ -97,7 +112,7 @@ export class TechSvcController {
     responses: {
       '200': {
         description: 'Tech PATCH success count',
-        content: { 'application/json': { schema: CountSchema } },
+        content: {'application/json': {schema: CountSchema}},
       },
     },
   })
@@ -105,7 +120,7 @@ export class TechSvcController {
     @requestBody({
       content: {
         'application/json': {
-          schema: getModelSchemaRef(Tech, { partial: true }),
+          schema: getModelSchemaRef(Tech, {partial: true}),
         },
       },
     })
@@ -119,7 +134,7 @@ export class TechSvcController {
     responses: {
       '200': {
         description: 'Tech model instance',
-        content: { 'application/json': { schema: getModelSchemaRef(Tech) } },
+        content: {'application/json': {schema: getModelSchemaRef(Tech)}},
       },
     },
   })
@@ -139,7 +154,7 @@ export class TechSvcController {
     @requestBody({
       content: {
         'application/json': {
-          schema: getModelSchemaRef(Tech, { partial: true }),
+          schema: getModelSchemaRef(Tech, {partial: true}),
         },
       },
     })
